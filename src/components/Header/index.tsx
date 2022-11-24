@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import { MapPin, ShoppingCart } from 'phosphor-react';
 
-import { Container } from './styles';
+import { Container, LocationContainer, ActionsContainer } from './styles';
 
 import logo from '../../assets/logo.svg';
 
@@ -11,12 +12,15 @@ export function Header() {
         <NavLink to="/" end title="Home">
           <img src={logo} alt="" />
         </NavLink>
-        <div>
-          <span>Petaling Jaya, MY</span>
+        <ActionsContainer>
+          <LocationContainer>
+            <MapPin weight="fill" size={22} />
+            Petaling Jaya, MY
+          </LocationContainer>
           <NavLink to="/checkout" end title="Checkout">
-            Checkout
+            <ShoppingCart weight="fill" size={22} />
           </NavLink>
-        </div>
+        </ActionsContainer>
       </nav>
     </Container>
   );
