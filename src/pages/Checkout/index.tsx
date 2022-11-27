@@ -1,5 +1,7 @@
 import { MapPinLine } from 'phosphor-react';
 
+import { CheckoutItem } from './components/CheckoutItem';
+
 export function Checkout() {
   return (
     <form>
@@ -14,15 +16,7 @@ export function Checkout() {
       </div>
 
       <aside>
-        <div>
-          <img src="" alt="" />
-          <div>
-            <header>
-              <span>Traditional Expresso</span>
-              <strong>9.90</strong>
-            </header>
-          </div>
-        </div>
+        <CheckoutItem />
       </aside>
     </form>
   );
