@@ -7,40 +7,38 @@ export function Home() {
   return (
     <Container>
       <IntroSection>
-        <div>
-          <h1>Find the perfect coffee anytime of the day</h1>
-          <p>
-            Receive your coffee wherever you are and whenever you want with
-            Coffee Delivery
-          </p>
+        <h1>Find the perfect coffee anytime of the day</h1>
+        <p>
+          Receive your coffee wherever you are and whenever you want with Coffee
+          Delivery
+        </p>
 
-          <ItemsList>
-            <li>
-              <IconWrapper bgColor="yellowDark">
-                <ShoppingCart weight="fill" size={16} />
-              </IconWrapper>
-              Simple and secure purchase
-            </li>
-            <li>
-              <IconWrapper bgColor="yellow">
-                <Timer weight="fill" size={16} />
-              </IconWrapper>
-              Fast delivery
-            </li>
-            <li>
-              <IconWrapper bgColor="gray">
-                <Package weight="fill" size={16} />
-              </IconWrapper>
-              Anti-leaking wrapping
-            </li>
-            <li>
-              <IconWrapper bgColor="purple">
-                <Coffee weight="fill" size={16} />
-              </IconWrapper>
-              Fresh coffee directly delivered to you
-            </li>
-          </ItemsList>
-        </div>
+        <ItemsList>
+          <li>
+            <IconWrapper bgColor="yellowDark">
+              <ShoppingCart weight="fill" size={16} />
+            </IconWrapper>
+            Simple and secure purchase
+          </li>
+          <li>
+            <IconWrapper bgColor="yellow">
+              <Timer weight="fill" size={16} />
+            </IconWrapper>
+            Fast delivery
+          </li>
+          <li>
+            <IconWrapper bgColor="gray">
+              <Package weight="fill" size={16} />
+            </IconWrapper>
+            Anti-leaking wrapping
+          </li>
+          <li>
+            <IconWrapper bgColor="purple">
+              <Coffee weight="fill" size={16} />
+            </IconWrapper>
+            Fresh coffee directly delivered to you
+          </li>
+        </ItemsList>
 
         <img
           src={coffeeImage}

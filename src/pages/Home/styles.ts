@@ -1,39 +1,64 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  @media (max-width: 880px) {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+`;
 
 export const IntroSection = styled.section`
   margin: 5.75rem 0;
-  display: flex;
-  gap: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'header coffeeImage'
+    'description coffeeImage'
+    'list coffeeImage';
+  grid-column-gap: 3.5rem;
 
-  & > div {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  @media (max-width: 880px) {
+    margin: 1.5rem 0;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'description'
+      'coffeeImage'
+      'list';
+    grid-row-gap: 1rem;
+  }
 
-    h1 {
-      font-family: 'Baloo 2', sans-serif;
-      font-weight: 800;
-      font-size: 3rem;
-      color: ${(props) => props.theme['base-title']};
-      line-height: 1.3;
-    }
+  h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: ${(props) => props.theme['base-title']};
+    line-height: 1.3;
+    grid-area: header;
+  }
 
-    p {
-      font-size: 1.25rem;
-      color: ${(props) => props.theme['base-subtitle']};
-      line-height: 1.3;
-      margin-top: 1rem;
-    }
+  p {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme['base-subtitle']};
+    line-height: 1.3;
+    margin: 1rem 0;
+    grid-area: description;
   }
 
   img {
     width: 29.75rem;
+    grid-area: coffeeImage;
+    align-self: center;
+
+    @media (max-width: 960px) {
+      width: 25rem;
+      margin: 0 auto;
+    }
   }
 `;
 
 export const ItemsList = styled.ul`
+  grid-area: list;
   margin: auto 0;
   list-style: none;
   display: grid;
