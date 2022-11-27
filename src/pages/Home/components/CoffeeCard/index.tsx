@@ -1,7 +1,9 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react';
-import americanoImage from '../../../../assets/coffees/americano.png';
+import { ShoppingCart } from 'phosphor-react';
+import { InputNumber } from '../../../../components/InputNumber';
 
 import { Container, Header, FormContainer } from './styles';
+
+import americanoImage from '../../../../assets/coffees/americano.png';
 
 export function CoffeeCard() {
   return (
@@ -16,15 +18,7 @@ export function CoffeeCard() {
       <FormContainer>
         <strong>9.90</strong>
         <form>
-          <label>
-            <button type="button">
-              <Minus size={14} weight="bold" />
-            </button>
-            <input type="number" min={1} max={99} />
-            <button type="button">
-              <Plus size={14} weight="bold" />
-            </button>
-          </label>
+          <InputNumber />
           <button type="submit">
             <ShoppingCart weight="fill" size={22} />
           </button>
