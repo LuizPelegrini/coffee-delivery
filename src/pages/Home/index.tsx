@@ -1,7 +1,15 @@
-import coffeeImage from '../../assets/coffee-image.png';
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
 
-import { Container, ItemsList, IntroSection, IconWrapper } from './styles';
+import {
+  Container,
+  ItemsList,
+  IntroSection,
+  IconWrapper,
+  CoffeeList,
+} from './styles';
+import { CoffeeCard } from './components/CoffeeCard';
+
+import coffeeImage from '../../assets/coffee-image.png';
 
 export function Home() {
   return (
@@ -45,6 +53,15 @@ export function Home() {
           alt="Coffee cup on a yellow background with coffee beans"
         />
       </IntroSection>
+
+      <CoffeeList>
+        <h2>Our coffees</h2>
+        <ul>
+          <li>
+            <CoffeeCard />
+          </li>
+        </ul>
+      </CoffeeList>
     </Container>
   );
 }

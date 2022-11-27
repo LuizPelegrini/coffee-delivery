@@ -27,6 +27,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  ul {
+    list-style: none;
+  }
+
   @media(max-width: 480px) {
     html {
       font-size: 87.5%;

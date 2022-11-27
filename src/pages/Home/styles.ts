@@ -60,7 +60,6 @@ export const IntroSection = styled.section`
 export const ItemsList = styled.ul`
   grid-area: list;
   margin: auto 0;
-  list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 1.25rem;
@@ -95,4 +94,19 @@ export const IconWrapper = styled.div<IconWrapperProps>`
   border-radius: 50%;
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme[COLORS_MAP[props.bgColor]]};
+`;
+
+export const CoffeeList = styled.section`
+  h2 {
+    color: ${(props) => props.theme['base-subtitle']};
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  ul {
+    display: flex;
+    margin-top: 3.375rem;
+  }
 `;
