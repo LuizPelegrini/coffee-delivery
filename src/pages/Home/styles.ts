@@ -108,5 +108,8 @@ export const CoffeeList = styled.section`
   ul {
     display: flex;
     margin-top: 3.375rem;
+    gap: 2rem;
+
+    flex-wrap: wrap;
   }
 `;

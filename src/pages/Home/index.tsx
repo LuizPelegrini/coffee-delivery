@@ -60,6 +60,18 @@ export function Home() {
           <li>
             <CoffeeCard />
           </li>
+          <li>
+            <CoffeeCard />
+          </li>
+          <li>
+            <CoffeeCard />
+          </li>
+          <li>
+            <CoffeeCard />
+          </li>
+          <li>
+            <CoffeeCard />
+          </li>
         </ul>
       </CoffeeList>
     </Container>
