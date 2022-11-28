@@ -1,5 +1,3 @@
-import { Bank, CreditCard, Money } from 'phosphor-react';
-
 import { CheckoutItem } from './components/CheckoutItem';
 import { OrderSummary } from './components/OrderSummary';
 import { CheckoutHeader } from './components/CheckoutHeader';
@@ -18,6 +16,7 @@ import {
   AddressInputGroup,
   SubmitButton,
 } from './styles';
+import { RadioInput } from './components/RadioInput';
 
 export function Checkout() {
   return (
@@ -52,23 +51,24 @@ export function Checkout() {
           />
 
           <div>
-            <input type="radio" name="payment" id="payment_credit" />
-            <label htmlFor="payment_credit">
-              <CreditCard size={22} />
-              <span>Credit Card</span>
-            </label>
-
-            <input type="radio" name="payment" id="payment_debit" />
-            <label htmlFor="payment_debit">
-              <Bank size={22} />
-              <span>Debit Card</span>
-            </label>
-
-            <input type="radio" name="payment" id="payment_cash" />
-            <label htmlFor="payment_cash">
-              <Money size={22} />
-              <span>Cash</span>
-            </label>
+            <RadioInput
+              id="payment_credit"
+              groupName="payment"
+              label="Credit Card"
+              icon="credit-card"
+            />
+            <RadioInput
+              id="payment_debit"
+              groupName="payment"
+              label="Debit Card"
+              icon="debit-card"
+            />
+            <RadioInput
+              id="payment_cash"
+              groupName="payment"
+              label="Cash"
+              icon="cash"
+            />
           </div>
         </PaymentSection>
       </div>
