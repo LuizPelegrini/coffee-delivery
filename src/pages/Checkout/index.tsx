@@ -1,4 +1,10 @@
-import { MapPinLine } from 'phosphor-react';
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+} from 'phosphor-react';
 
 import { CheckoutItem } from './components/CheckoutItem';
 
@@ -14,6 +20,7 @@ import {
   CityInput,
   StateInput,
   AddressInputGroup,
+  Header,
 } from './styles';
 
 export function Checkout() {
@@ -22,25 +29,56 @@ export function Checkout() {
       <div>
         <h1>Complete your order</h1>
         <AddressSection>
-          <header>
+          <Header iconColor="yellow-dark">
             <MapPinLine size={22} />
             <div>
               <h2>Delivery Address</h2>
               <p>Provide address for delivery</p>
             </div>
-          </header>
+          </Header>
 
           <AddressInputGroup>
-            <ZipCodeInput type="text" placeholder="Provide Zip Code" />
+            <ZipCodeInput type="text" placeholder="Zip Code" />
             <StreetNameInput type="text" placeholder="Address" />
             <ResidencyNumberInput type="text" placeholder="Number" />
-            <ComplementInput type="text" placeholder="" />
+            <ComplementInput type="text" placeholder="Complement" />
             <CityInput type="text" placeholder="City" />
             <StateInput type="text" placeholder="State" />
           </AddressInputGroup>
         </AddressSection>
 
-        <PaymentSection></PaymentSection>
+        <PaymentSection>
+          <Header iconColor="purple">
+            <CurrencyDollar size={22} />
+            <div>
+              <h2>Payment</h2>
+              <p>
+                Payment is made upon delivery. Choose the method you&apos;d like
+                to use:
+              </p>
+            </div>
+          </Header>
+
+          <div>
+            <input type="radio" name="payment" id="payment_credit" />
+            <label htmlFor="payment_credit">
+              <CreditCard size={22} />
+              <span>Credit Card</span>
+            </label>
+
+            <input type="radio" name="payment" id="payment_debit" />
+            <label htmlFor="payment_debit">
+              <Bank size={22} />
+              <span>Debit Card</span>
+            </label>
+
+            <input type="radio" name="payment" id="payment_cash" />
+            <label htmlFor="payment_cash">
+              <Money size={22} />
+              <span>Cash</span>
+            </label>
+          </div>
+        </PaymentSection>
       </div>
 
       <aside>

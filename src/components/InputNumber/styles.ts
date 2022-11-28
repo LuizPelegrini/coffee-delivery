@@ -6,7 +6,7 @@ export const Container = styled.label`
   border-radius: 6px;
 
   &:focus-within {
-    box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-dark']};
+    box-shadow: 0 0 0 2px ${(props) => props.theme.purple};
   }
 
   input {

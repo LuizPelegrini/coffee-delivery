@@ -10,6 +10,8 @@ export const Container = styled.div`
   }
 
   strong {
+    margin-left: auto;
+
     &::before {
       content: '$ ';
     }
