@@ -1,13 +1,8 @@
-import {
-  Bank,
-  CreditCard,
-  CurrencyDollar,
-  MapPinLine,
-  Money,
-} from 'phosphor-react';
+import { Bank, CreditCard, Money } from 'phosphor-react';
 
 import { CheckoutItem } from './components/CheckoutItem';
 import { OrderSummary } from './components/OrderSummary';
+import { CheckoutHeader } from './components/CheckoutHeader';
 
 import {
   FormContainer,
@@ -21,7 +16,6 @@ import {
   CityInput,
   StateInput,
   AddressInputGroup,
-  Header,
   SubmitButton,
 } from './styles';
 
@@ -31,13 +25,12 @@ export function Checkout() {
       <div>
         <h1>Complete your order</h1>
         <AddressSection>
-          <Header iconColor="yellow-dark">
-            <MapPinLine size={22} />
-            <div>
-              <h2>Delivery Address</h2>
-              <p>Provide address for delivery</p>
-            </div>
-          </Header>
+          <CheckoutHeader
+            icon="pin"
+            iconColor="yellow-dark"
+            title="Delivery Address"
+            description="Provide address for delivery"
+          />
 
           <AddressInputGroup>
             <ZipCodeInput type="text" placeholder="Zip Code" />
@@ -50,16 +43,13 @@ export function Checkout() {
         </AddressSection>
 
         <PaymentSection>
-          <Header iconColor="purple">
-            <CurrencyDollar size={22} />
-            <div>
-              <h2>Payment</h2>
-              <p>
-                Payment is made upon delivery. Choose the method you&apos;d like
-                to use:
-              </p>
-            </div>
-          </Header>
+          <CheckoutHeader
+            icon="dollar"
+            iconColor="purple"
+            title="Payment"
+            description="Payment is made upon delivery. Choose the method you'd like
+            to use:"
+          />
 
           <div>
             <input type="radio" name="payment" id="payment_credit" />
