@@ -21,6 +21,8 @@ import {
   StateInput,
   AddressInputGroup,
   Header,
+  SubmitButton,
+  OrderDetails,
 } from './styles';
 
 export function Checkout() {
@@ -85,6 +87,26 @@ export function Checkout() {
         <h1>Selected Coffees</h1>
         <SelectedCoffeesSection>
           <CheckoutItem />
+          <hr />
+          <CheckoutItem />
+          <hr />
+
+          <OrderDetails>
+            <div>
+              <span>Total items</span>
+              <span>$ 29.70</span>
+            </div>
+            <div>
+              <span>Delivery fee</span>
+              <span>$ 29.70</span>
+            </div>
+            <div>
+              <strong>Total</strong>
+              <strong>$ 29.70</strong>
+            </div>
+          </OrderDetails>
+
+          <SubmitButton type="submit">Confirm Purchase</SubmitButton>
         </SelectedCoffeesSection>
       </aside>
     </FormContainer>

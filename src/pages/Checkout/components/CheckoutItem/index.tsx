@@ -21,7 +21,7 @@ export function CheckoutItem() {
         </div>
       </CoffeeDetails>
 
-      <strong>9.90</strong>
+      <strong>$ 9.90</strong>
     </Container>
   );
 }

@@ -9,6 +9,15 @@ export const FormContainer = styled.form`
     font-size: 1.125rem;
     margin-bottom: 1rem;
   }
+
+  aside {
+    flex-shrink: 0;
+    flex-basis: 28rem;
+  }
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+  }
 `;
 
 export const AddressSection = styled.section`
@@ -67,6 +76,10 @@ const BaseInput = styled.input`
 export const ZipCodeInput = styled(BaseInput)`
   grid-column: 1;
   grid-row: 1;
+
+  @media (max-width: 980px) {
+    grid-column: 1 / span 5;
+  }
 `;
 
 export const StreetNameInput = styled(BaseInput)`
@@ -77,21 +90,40 @@ export const StreetNameInput = styled(BaseInput)`
 export const ResidencyNumberInput = styled(BaseInput)`
   grid-column: 1;
   grid-row: 3;
+
+  @media (max-width: 980px) {
+    grid-column: 1 / span 5;
+  }
 `;
 
 export const ComplementInput = styled(BaseInput)`
   grid-column: 2 / span 4;
   grid-row: 3;
+
+  @media (max-width: 980px) {
+    grid-row: 4;
+    grid-column: 1 / span 5;
+  }
 `;
 
 export const CityInput = styled(BaseInput)`
   grid-column: 1;
   grid-row: 4;
+
+  @media (max-width: 980px) {
+    grid-row: 5;
+    grid-column: 1 / span 5;
+  }
 `;
 
 export const StateInput = styled(BaseInput)`
   grid-column: 2 / span 4;
   grid-row: 4;
+
+  @media (max-width: 980px) {
+    grid-row: 6;
+    grid-column: 1 / span 5;
+  }
 `;
 
 export const PaymentSection = styled.section`
@@ -141,6 +173,10 @@ export const PaymentSection = styled.section`
         color: ${(props) => props.theme['base-text']};
       }
     }
+
+    @media (max-width: 980px) {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -148,58 +184,47 @@ export const SelectedCoffeesSection = styled.section`
   background-color: ${(props) => props.theme['base-card']};
   padding: 2.5rem;
   border-radius: 0px 36px 0px 36px;
-  width: 28rem;
+
+  hr {
+    border-top: 1px solid ${(props) => props.theme['base-button']};
+    border-left-width: 0;
+    margin: 1.5rem 0;
+  }
 `;
 
-// export const PaymentOption = styled.div`
-//   background-color: ${(props) => props.theme['base-button']};
-//   display: flex;
-//   align-items: center;
-//   gap: 0.75rem;
-//   color: ${(props) => props.theme.purple};
-//   padding: 1rem;
-//   border-radius: 6px;
-//   flex-grow: 1;
-//   flex-basis: 1rem; // so they occupy the same width
-//   cursor: pointer;
-//   transition: background-color 0.15s;
+export const SubmitButton = styled.button`
+  width: 100%;
+  padding: 0.75rem;
+  color: ${(props) => props.theme.white};
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  background-color: ${(props) => props.theme.yellow};
+  border: 0;
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.15s;
 
-//   &:hover {
-//     background-color: ${(props) => props.theme['base-hover']};
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-dark']};
+  }
+`;
 
-//     label {
-//       color: ${(props) => props.theme['base-subtitle']};
-//     }
-//   }
+export const OrderDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 
-//   input[type='radio'] {
-//     -webkit-appearance: none;
-//   }
+  > div {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.3;
+  }
 
-//   label {
-//     color: ${(props) => props.theme['base-text']};
-//     text-transform: uppercase;
-//     font-size: 0.75rem;
-//     cursor: inherit;
-//   }
-// `;
-
-// export const PaymentOption = styled.label`
-//   background-color: ${(props) => props.theme['base-button']};
-//   display: flex;
-//   align-items: center;
-//   padding: 1rem;
-//   border-radius: 6px;
-//   flex-grow: 1;
-//   flex-basis: 1rem; // so they occupy the same width
-//   cursor: pointer;
-//   transition: background-color 0.15s;
-
-//   & > input:checked {
-//     background-color: red;
-//   }
-
-//   input[type='radio'] {
-//     -webkit-appearance: none;
-//   }
-// `;
+  > div:last-child {
+    font-size: 1.25rem;
+    color: ${(props) => props.theme['base-subtitle']};
+  }
+`;
