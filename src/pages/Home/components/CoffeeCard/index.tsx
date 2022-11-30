@@ -10,14 +10,30 @@ import { FormEvent } from 'react';
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
 
-export function CoffeeCard() {
+interface Coffee {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  features: string[];
+  priceInCents: number;
+}
+
+interface CoffeeCardProps {
+  coffee: Coffee;
+  onAddToCard: (id: string, quantity: number) => void;
+}
+
+export function CoffeeCard({ coffee, onAddToCard }: CoffeeCardProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const element = event.currentTarget.elements.namedItem(
       'coffee',
     ) as HTMLInputElement;
 
-    console.log(element.value);
+    const quantity = parseInt(element.value);
+
+    onAddToCard(coffee.id, quantity);
   }
 
   return (
