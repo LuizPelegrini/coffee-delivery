@@ -1,59 +1,28 @@
 import { Minus, Plus } from 'phosphor-react';
-import { ChangeEvent, useState } from 'react';
+import { HTMLAttributes } from 'react';
 
 import { Container } from './styles';
 
-interface InputNumberProps {
-  initialAmount: number;
+interface InputNumberProps extends HTMLAttributes<HTMLInputElement> {
+  value: number;
+  min: number;
+  max: number;
+  onAddAmount: () => void;
+  onSubtractAmount: () => void;
 }
 
-const MIN_AMOUNT = 1;
-const MAX_AMOUNT = 99;
-
-export function InputNumber({ initialAmount }: InputNumberProps) {
-  const [amount, setAmount] = useState(initialAmount);
-
-  function handleAddAmount() {
-    setAmount((state) => {
-      if (state === MAX_AMOUNT) return state;
-      return state + 1;
-    });
-  }
-
-  function handleSubtractAmount() {
-    setAmount((state) => {
-      if (state === MIN_AMOUNT) return state;
-      return state - 1;
-    });
-  }
-
-  function handleChangeAmount(event: ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-
-    if (value) {
-      const amount = Math.min(
-        Math.max(MIN_AMOUNT, parseInt(value)),
-        MAX_AMOUNT,
-      );
-      setAmount(amount);
-    } else {
-      setAmount(1);
-    }
-  }
-
+export function InputNumber({
+  onSubtractAmount,
+  onAddAmount,
+  ...inputProps
+}: InputNumberProps) {
   return (
     <Container>
-      <button type="button" onClick={handleSubtractAmount}>
+      <button type="button" onClick={onSubtractAmount}>
         <Minus size={14} weight="bold" />
       </button>
-      <input
-        type="number"
-        min={1}
-        max={99}
-        value={amount}
-        onChange={handleChangeAmount}
-      />
-      <button type="button" onClick={handleAddAmount}>
+      <input type="number" {...inputProps} />
+      <button type="button" onClick={onAddAmount}>
         <Plus size={14} weight="bold" />
       </button>
     </Container>
