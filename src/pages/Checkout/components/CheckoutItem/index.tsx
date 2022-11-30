@@ -1,6 +1,6 @@
 import { Trash } from 'phosphor-react';
 
-import { InputNumber } from '../../../../components/InputNumber';
+// import InputNumber from '../../../../components/InputNumber';
 
 import coffeeImage from '../../../../assets/coffees/americano.png';
 import { Container, CoffeeDetails, RemoveButton } from './styles';
@@ -13,7 +13,7 @@ export function CheckoutItem() {
       <CoffeeDetails>
         <span>Traditional Expresso</span>
         <div>
-          <InputNumber />
+          {/* <InputNumber /> */}
           <RemoveButton type="button">
             <Trash size={16} />
             <span>Remove</span>
