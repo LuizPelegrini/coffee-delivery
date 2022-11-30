@@ -18,7 +18,7 @@ export function CoffeeCard() {
       <FormContainer>
         <strong>9.90</strong>
         <form>
-          <InputNumber />
+          <InputNumber initialAmount={1} />
           <button type="submit">
             <ShoppingCart weight="fill" size={22} />
           </button>
