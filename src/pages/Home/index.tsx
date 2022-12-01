@@ -11,7 +11,7 @@ import { CoffeeCard } from './components/CoffeeCard';
 
 import coffeeImage from '../../assets/coffee-image.png';
 
-import americanoImage from '../../assets/coffees/americano.png';
+import coffees from '../../coffees.json';
 
 export function Home() {
   function handleAddToCart(id: string, quantity: number) {
@@ -63,19 +63,11 @@ export function Home() {
       <CoffeeList>
         <h2>Our coffees</h2>
         <ul>
-          <li>
-            <CoffeeCard
-              coffee={{
-                id: 'abc',
-                name: 'Traditional Expresso',
-                description: 'Here is the description',
-                features: ['Traditional'],
-                image: americanoImage,
-                priceInCents: 410,
-              }}
-              onAddToCart={handleAddToCart}
-            />
-          </li>
+          {coffees.map((coffee) => (
+            <li key={coffee.id}>
+              <CoffeeCard coffee={coffee} onAddToCart={handleAddToCart} />
+            </li>
+          ))}
         </ul>
       </CoffeeList>
     </Container>

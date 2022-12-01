@@ -6,18 +6,10 @@ import { Container, Header, FormContainer } from './styles';
 
 import { FormEvent } from 'react';
 import { formatPrice } from '../../../../utils';
+import { Coffee } from '../../../../@types/coffee';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
-
-interface Coffee {
-  id: string;
-  name: string;
-  description: string;
-  image: string;
-  features: string[];
-  priceInCents: number;
-}
 
 interface CoffeeCardProps {
   coffee: Coffee;

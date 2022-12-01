@@ -1,0 +1,18 @@
+[
+  {
+    "id": "abc",
+    "name": "Traditional Expresso",
+    "description": "Here is the description",
+    "features": ["Traditional"],
+    "image": "/images/coffees/americano.png",
+    "priceInCents": 410
+  },
+  {
+    "id": "abcd",
+    "name": "Traditional Arabic",
+    "description": "Here is the description",
+    "features": ["Traditional", "Cold"],
+    "image": "/images/coffees/arabic.png",
+    "priceInCents": 410
+  }
+]

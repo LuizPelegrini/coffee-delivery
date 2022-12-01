@@ -1,14 +1,18 @@
 import { Trash } from 'phosphor-react';
+import { Coffee } from '../../../../@types/coffee';
 
 // import InputNumber from '../../../../components/InputNumber';
 
-import coffeeImage from '../../../../assets/coffees/americano.png';
 import { Container, CoffeeDetails, RemoveButton } from './styles';
 
-export function CheckoutItem() {
+interface CheckoutItemProps {
+  coffee: Coffee;
+}
+
+export function CheckoutItem({ coffee }: CheckoutItemProps) {
   return (
     <Container>
-      <img src={coffeeImage} alt="Mug with coffee" />
+      <img src={coffee.image} alt="Mug with coffee" />
 
       <CoffeeDetails>
         <span>Traditional Expresso</span>
