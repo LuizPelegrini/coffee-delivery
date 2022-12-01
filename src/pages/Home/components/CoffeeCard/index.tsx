@@ -4,19 +4,21 @@ import { InputNumber } from '../../../../components/InputNumber';
 
 import { Container, Header, FormContainer, CoffeeFeatures } from './styles';
 
-import { FormEvent } from 'react';
+import { FormEvent, useContext } from 'react';
 import { formatPrice } from '../../../../utils';
 import { Coffee } from '../../../../@types/coffee';
+import { ShoppingCartContext } from '../../../../contexts/ShoppingCartContext';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
 
 interface CoffeeCardProps {
   coffee: Coffee;
-  onAddToCart: (id: string, quantity: number) => void;
 }
 
-export function CoffeeCard({ coffee, onAddToCart }: CoffeeCardProps) {
+export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const { addCoffee } = useContext(ShoppingCartContext);
+
   const { id, name, description, features, image, priceInCents } = coffee;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -26,8 +28,7 @@ export function CoffeeCard({ coffee, onAddToCart }: CoffeeCardProps) {
     ) as HTMLInputElement;
 
     const quantity = parseInt(element.value);
-
-    onAddToCart(id, quantity);
+    addCoffee(id, quantity);
   }
 
   return (

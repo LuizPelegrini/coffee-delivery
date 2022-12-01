@@ -14,7 +14,11 @@ export const Container = styled.header`
   }
 `;
 
-export const ActionsContainer = styled.div`
+interface ActionsContainerProps {
+  cartItemsQuantity: number;
+}
+
+export const ActionsContainer = styled.div<ActionsContainerProps>`
   display: flex;
   align-items: stretch;
   gap: 0.75rem;
@@ -32,7 +36,8 @@ export const ActionsContainer = styled.div`
     position: relative;
 
     &::after {
-      content: '2';
+      content: ${(props) =>
+        props.cartItemsQuantity > 0 ? `'${props.cartItemsQuantity}'` : ''};
       display: flex;
       align-items: center;
       justify-content: center;
