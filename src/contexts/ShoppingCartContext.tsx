@@ -1,46 +1,49 @@
 import { createContext, ReactNode, useState } from 'react';
-
+import { Coffee } from '../@types/coffee';
 interface ShoppingCartProviderProps {
   children: ReactNode;
 }
 
-interface Coffee {
-  id: string;
+interface ShoppingCartCoffee extends Coffee {
   quantity: number;
 }
 
 interface ShoppingCartContextType {
-  coffees: Coffee[];
-  addCoffee: (id: string, quantity: number) => void;
+  coffees: ShoppingCartCoffee[];
+  addCoffee: (coffee: Coffee, quantity: number) => void;
   removeCoffee: (id: string) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [coffees, setCoffees] = useState<Coffee[]>([]);
+  const [coffees, setCoffees] = useState<ShoppingCartCoffee[]>([]);
 
-  function addCoffee(id: string, quantity: number) {
-    const existentCoffeeIndex = coffees.findIndex((coffee) => coffee.id === id);
+  function addCoffee(coffee: Coffee, quantity: number) {
+    const existentCoffeeInShoppingCart = coffees.find(
+      (shoppingCartCoffee) => shoppingCartCoffee.id === coffee.id,
+    );
 
-    if (existentCoffeeIndex < 0) {
+    // if coffee is not in Shopping Cart, then create a new one
+    if (!existentCoffeeInShoppingCart) {
       const newCoffee = {
-        id,
+        ...coffee,
         quantity,
       };
 
       setCoffees((state) => [...state, newCoffee]);
     } else {
+      // if coffee is already in ShoppingCart then overwrite its quantity
       setCoffees((state) =>
-        state.map((coffee) => {
-          if (coffee.id === id) {
+        state.map((shoppingCartCoffee) => {
+          if (shoppingCartCoffee.id === coffee.id) {
             return {
-              ...coffee,
+              ...shoppingCartCoffee,
               quantity,
             };
           }
 
-          return coffee;
+          return shoppingCartCoffee;
         }),
       );
     }

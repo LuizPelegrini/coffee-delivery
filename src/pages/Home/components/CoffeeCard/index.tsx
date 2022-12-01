@@ -19,7 +19,7 @@ interface CoffeeCardProps {
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const { addCoffee } = useContext(ShoppingCartContext);
 
-  const { id, name, description, features, image, priceInCents } = coffee;
+  const { name, description, features, image, priceInCents } = coffee;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,7 +28,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     ) as HTMLInputElement;
 
     const quantity = parseInt(element.value);
-    addCoffee(id, quantity);
+    addCoffee(coffee, quantity);
   }
 
   return (

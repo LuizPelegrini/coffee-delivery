@@ -2,6 +2,10 @@ import { CheckoutItem } from './components/CheckoutItem';
 import { OrderSummary } from './components/OrderSummary';
 import { CheckoutHeader } from './components/CheckoutHeader';
 
+import { RadioInput } from './components/RadioInput';
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
+
 import {
   FormContainer,
   AddressSection,
@@ -16,9 +20,10 @@ import {
   AddressInputGroup,
   SubmitButton,
 } from './styles';
-import { RadioInput } from './components/RadioInput';
 
 export function Checkout() {
+  const { coffees } = useContext(ShoppingCartContext);
+
   return (
     <FormContainer>
       <div>
@@ -76,10 +81,12 @@ export function Checkout() {
       <aside>
         <h1>Selected Coffees</h1>
         <SelectedCoffeesSection>
-          <CheckoutItem />
-          <hr />
-          <CheckoutItem />
-          <hr />
+          {coffees.map(({ quantity, ...coffee }) => (
+            <>
+              <CheckoutItem coffee={coffee} quantity={quantity} />
+              <hr />
+            </>
+          ))}
 
           <OrderSummary />
 

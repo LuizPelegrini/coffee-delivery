@@ -11,7 +11,7 @@ import { CoffeeCard } from './components/CoffeeCard';
 
 import coffeeImage from '../../assets/coffee-image.png';
 
-import coffees from '../../coffees.json';
+import coffeesCatalogue from '../../coffees.json';
 
 export function Home() {
   return (
@@ -59,7 +59,7 @@ export function Home() {
       <CoffeeList>
         <h2>Our coffees</h2>
         <ul>
-          {coffees.map((coffee) => (
+          {coffeesCatalogue.map((coffee) => (
             <li key={coffee.id}>
               <CoffeeCard coffee={coffee} />
             </li>
