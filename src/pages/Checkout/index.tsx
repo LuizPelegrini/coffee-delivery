@@ -3,7 +3,7 @@ import { OrderSummary } from './components/OrderSummary';
 import { CheckoutHeader } from './components/CheckoutHeader';
 
 import { RadioInput } from './components/RadioInput';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 
 import {
@@ -82,10 +82,10 @@ export function Checkout() {
         <h1>Selected Coffees</h1>
         <SelectedCoffeesSection>
           {coffees.map(({ quantity, ...coffee }) => (
-            <>
+            <React.Fragment key={coffee.id}>
               <CheckoutItem coffee={coffee} quantity={quantity} />
               <hr />
-            </>
+            </React.Fragment>
           ))}
 
           <OrderSummary />

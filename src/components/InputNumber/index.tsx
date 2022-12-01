@@ -9,7 +9,9 @@ interface InputNumberProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export function InputNumber({ min, max, ...inputProps }: InputNumberProps) {
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(() => {
+    return Number(inputProps.value ?? 1);
+  });
 
   function handleAdd() {
     const newValue = value + 1 > max ? max : value + 1;
