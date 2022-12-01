@@ -12,8 +12,28 @@ import { CoffeeCard } from './components/CoffeeCard';
 import coffeeImage from '../../assets/coffee-image.png';
 
 import coffeesCatalogue from '../../coffees.json';
+import { useContext } from 'react';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 
 export function Home() {
+  const { coffees } = useContext(ShoppingCartContext);
+
+  const shoppingCartCoffeesIndexed = coffees.reduce((acc: any, coffee) => {
+    acc[coffee.id] = coffee;
+    return acc;
+  }, {});
+
+  const c = coffeesCatalogue.map((coffee) => {
+    if (shoppingCartCoffeesIndexed[coffee.id]) {
+      return shoppingCartCoffeesIndexed[coffee.id];
+    } else {
+      return {
+        ...coffee,
+        quantity: 1,
+      };
+    }
+  });
+
   return (
     <Container>
       <IntroSection>
@@ -59,9 +79,9 @@ export function Home() {
       <CoffeeList>
         <h2>Our coffees</h2>
         <ul>
-          {coffeesCatalogue.map((coffee) => (
+          {c.map((coffee) => (
             <li key={coffee.id}>
-              <CoffeeCard coffee={coffee} />
+              <CoffeeCard coffee={coffee} quantity={coffee.quantity} />
             </li>
           ))}
         </ul>

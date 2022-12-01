@@ -14,9 +14,10 @@ const MAX_QUANTITY = 99;
 
 interface CoffeeCardProps {
   coffee: Coffee;
+  quantity?: number;
 }
 
-export function CoffeeCard({ coffee }: CoffeeCardProps) {
+export function CoffeeCard({ coffee, quantity = 1 }: CoffeeCardProps) {
   const { addCoffee } = useContext(ShoppingCartContext);
 
   const { name, description, features, image, priceInCents } = coffee;
@@ -47,7 +48,12 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       <FormContainer>
         <strong>{formatPrice(priceInCents)}</strong>
         <form onSubmit={handleSubmit}>
-          <InputNumber name="coffee" min={MIN_QUANTITY} max={MAX_QUANTITY} />
+          <InputNumber
+            name="coffee"
+            min={MIN_QUANTITY}
+            max={MAX_QUANTITY}
+            value={quantity}
+          />
           <button type="submit">
             <ShoppingCart weight="fill" size={22} />
           </button>
