@@ -11,7 +11,13 @@ import { CoffeeCard } from './components/CoffeeCard';
 
 import coffeeImage from '../../assets/coffee-image.png';
 
+import americanoImage from '../../assets/coffees/americano.png';
+
 export function Home() {
+  function handleAddToCart(id: string, quantity: number) {
+    console.log(`${quantity} units of coffee ${id} has been added to cart`);
+  }
+
   return (
     <Container>
       <IntroSection>
@@ -58,19 +64,17 @@ export function Home() {
         <h2>Our coffees</h2>
         <ul>
           <li>
-            <CoffeeCard />
-          </li>
-          <li>
-            <CoffeeCard />
-          </li>
-          <li>
-            <CoffeeCard />
-          </li>
-          <li>
-            <CoffeeCard />
-          </li>
-          <li>
-            <CoffeeCard />
+            <CoffeeCard
+              coffee={{
+                id: 'abc',
+                name: 'Traditional Expresso',
+                description: 'Here is the description',
+                features: ['Traditional'],
+                image: americanoImage,
+                priceInCents: 410,
+              }}
+              onAddToCart={handleAddToCart}
+            />
           </li>
         </ul>
       </CoffeeList>

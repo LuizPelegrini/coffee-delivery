@@ -4,8 +4,8 @@ import { InputNumber } from '../../../../components/InputNumber';
 
 import { Container, Header, FormContainer } from './styles';
 
-import americanoImage from '../../../../assets/coffees/americano.png';
 import { FormEvent } from 'react';
+import { formatPrice } from '../../../../utils';
 
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 99;
@@ -21,10 +21,12 @@ interface Coffee {
 
 interface CoffeeCardProps {
   coffee: Coffee;
-  onAddToCard: (id: string, quantity: number) => void;
+  onAddToCart: (id: string, quantity: number) => void;
 }
 
-export function CoffeeCard({ coffee, onAddToCard }: CoffeeCardProps) {
+export function CoffeeCard({ coffee, onAddToCart }: CoffeeCardProps) {
+  const { id, name, description, features, image, priceInCents } = coffee;
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const element = event.currentTarget.elements.namedItem(
@@ -33,20 +35,22 @@ export function CoffeeCard({ coffee, onAddToCard }: CoffeeCardProps) {
 
     const quantity = parseInt(element.value);
 
-    onAddToCard(coffee.id, quantity);
+    onAddToCart(id, quantity);
   }
 
   return (
     <Container>
       <Header>
-        <img src={americanoImage} alt="Mug filled with expresso coffee" />
-        <strong>Traditional</strong>
-        <h3>Traditional Expresso</h3>
-        <p>Traditional coffee shot with ground beans</p>
+        <img src={image} alt="Mug filled with expresso coffee" />
+        {features.map((feature) => (
+          <strong key={feature}>{feature}</strong>
+        ))}
+        <h3>{name}</h3>
+        <p>{description}</p>
       </Header>
 
       <FormContainer>
-        <strong>9.90</strong>
+        <strong>{formatPrice(priceInCents)}</strong>
         <form onSubmit={handleSubmit}>
           <InputNumber name="coffee" min={MIN_QUANTITY} max={MAX_QUANTITY} />
           <button type="submit">
