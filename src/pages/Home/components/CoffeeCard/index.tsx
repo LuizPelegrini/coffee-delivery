@@ -2,7 +2,7 @@ import { ShoppingCart } from 'phosphor-react';
 
 import { InputNumber } from '../../../../components/InputNumber';
 
-import { Container, Header, FormContainer } from './styles';
+import { Container, Header, FormContainer, CoffeeFeatures } from './styles';
 
 import { FormEvent } from 'react';
 import { formatPrice } from '../../../../utils';
@@ -34,9 +34,11 @@ export function CoffeeCard({ coffee, onAddToCart }: CoffeeCardProps) {
     <Container>
       <Header>
         <img src={image} alt="Mug filled with expresso coffee" />
-        {features.map((feature) => (
-          <strong key={feature}>{feature}</strong>
-        ))}
+        <CoffeeFeatures>
+          {features.map((feature) => (
+            <li key={feature}>{feature}</li>
+          ))}
+        </CoffeeFeatures>
         <h3>{name}</h3>
         <p>{description}</p>
       </Header>

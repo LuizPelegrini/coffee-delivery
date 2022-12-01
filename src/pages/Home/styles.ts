@@ -105,7 +105,7 @@ export const CoffeeList = styled.section`
     line-height: 1.3;
   }
 
-  ul {
+  > ul {
     display: flex;
     margin-top: 3.375rem;
     gap: 2rem;

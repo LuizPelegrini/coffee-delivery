@@ -22,13 +22,6 @@ export const Header = styled.header`
     width: 6.25rem;
   }
 
-  strong {
-    background-color: ${(props) => props.theme['yellow-light']};
-    color: ${(props) => props.theme['yellow-dark']};
-    padding: 0.25rem 0.5rem;
-    border-radius: 100px;
-  }
-
   p {
     text-align: center;
     color: ${(props) => props.theme['base-label']};
@@ -83,5 +76,17 @@ export const FormContainer = styled.div`
         background-color: ${(props) => props.theme.purple};
       }
     }
+  }
+`;
+
+export const CoffeeFeatures = styled.ul`
+  display: flex;
+  gap: 0.5rem;
+
+  li {
+    background-color: ${(props) => props.theme['yellow-light']};
+    color: ${(props) => props.theme['yellow-dark']};
+    padding: 0.25rem 0.5rem;
+    border-radius: 100px;
   }
 `;
