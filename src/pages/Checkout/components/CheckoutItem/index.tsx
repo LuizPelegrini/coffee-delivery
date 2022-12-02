@@ -44,7 +44,7 @@ export function CheckoutItem({ coffee, quantity }: CheckoutItemProps) {
         </div>
       </CoffeeDetails>
 
-      <strong>$ {formatPrice(coffee.priceInCents)}</strong>
+      <strong>$ {formatPrice(coffee.priceInCents * quantity)}</strong>
     </Container>
   );
 }

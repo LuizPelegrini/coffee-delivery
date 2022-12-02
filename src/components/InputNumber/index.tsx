@@ -6,7 +6,7 @@ import { Container } from './styles';
 interface InputNumberProps extends InputHTMLAttributes<HTMLInputElement> {
   min: number;
   max: number;
-  onCustomChange: (value: number) => void;
+  onCustomChange?: (value: number) => void;
 }
 
 export function InputNumber({
@@ -24,7 +24,7 @@ export function InputNumber({
     setValue(newValue);
 
     // emit onChange event
-    onCustomChange(newValue);
+    onCustomChange?.(newValue);
   }
 
   function handleSubtract() {
@@ -32,7 +32,7 @@ export function InputNumber({
     setValue(newValue);
 
     // emit onChange event
-    onCustomChange(newValue);
+    onCustomChange?.(newValue);
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -41,11 +41,11 @@ export function InputNumber({
     if (value) {
       const amount = Math.min(Math.max(min, parseInt(value)), max);
       setValue(amount);
-      onCustomChange(amount);
+      onCustomChange?.(amount);
     } else {
       // if value is empty, assign the min value
       setValue(min);
-      onCustomChange(min);
+      onCustomChange?.(min);
     }
   }
 

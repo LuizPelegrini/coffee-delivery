@@ -4,3 +4,5 @@ export const formatPrice = (priceInCents: number): string => {
 
   return `${p}.${c}`;
 };
+
+export const DELIVERY_FEE_IN_CENTS = 300;
