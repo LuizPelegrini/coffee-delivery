@@ -88,5 +88,6 @@ export const CoffeeFeatures = styled.ul`
     color: ${(props) => props.theme['yellow-dark']};
     padding: 0.25rem 0.5rem;
     border-radius: 100px;
+    font-weight: bold;
   }
 `;

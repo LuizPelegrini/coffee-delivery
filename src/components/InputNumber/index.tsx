@@ -6,9 +6,15 @@ import { Container } from './styles';
 interface InputNumberProps extends InputHTMLAttributes<HTMLInputElement> {
   min: number;
   max: number;
+  onCustomChange: (value: number) => void;
 }
 
-export function InputNumber({ min, max, ...inputProps }: InputNumberProps) {
+export function InputNumber({
+  min,
+  max,
+  onCustomChange,
+  ...inputProps
+}: InputNumberProps) {
   const [value, setValue] = useState(() => {
     return Number(inputProps.value ?? 1);
   });
@@ -16,11 +22,17 @@ export function InputNumber({ min, max, ...inputProps }: InputNumberProps) {
   function handleAdd() {
     const newValue = value + 1 > max ? max : value + 1;
     setValue(newValue);
+
+    // emit onChange event
+    onCustomChange(newValue);
   }
 
   function handleSubtract() {
     const newValue = value - 1 < min ? min : value - 1;
     setValue(newValue);
+
+    // emit onChange event
+    onCustomChange(newValue);
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
@@ -29,8 +41,11 @@ export function InputNumber({ min, max, ...inputProps }: InputNumberProps) {
     if (value) {
       const amount = Math.min(Math.max(min, parseInt(value)), max);
       setValue(amount);
+      onCustomChange(amount);
     } else {
+      // if value is empty, assign the min value
       setValue(min);
+      onCustomChange(min);
     }
   }
 

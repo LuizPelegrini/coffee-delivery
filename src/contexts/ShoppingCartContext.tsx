@@ -12,6 +12,7 @@ interface ShoppingCartContextType {
   coffees: ShoppingCartCoffee[];
   addCoffee: (coffee: Coffee, quantity: number) => void;
   removeCoffee: (id: string) => void;
+  editQuantity: (id: string, quantity: number) => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -55,8 +56,31 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     });
   }
 
+  // assumes the coffee is already in shopping cart
+  function editQuantity(id: string, quantity: number) {
+    setCoffees((state) => {
+      return state.map((coffee) => {
+        if (coffee.id === id) {
+          return {
+            ...coffee,
+            quantity,
+          };
+        }
+
+        return coffee;
+      });
+    });
+  }
+
   return (
-    <ShoppingCartContext.Provider value={{ coffees, addCoffee, removeCoffee }}>
+    <ShoppingCartContext.Provider
+      value={{
+        coffees,
+        addCoffee,
+        removeCoffee,
+        editQuantity,
+      }}
+    >
       {children}
     </ShoppingCartContext.Provider>
   );
