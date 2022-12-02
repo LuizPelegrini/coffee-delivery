@@ -90,7 +90,9 @@ export function Checkout() {
 
           <OrderSummary />
 
-          <SubmitButton type="submit">Confirm Purchase</SubmitButton>
+          <SubmitButton type="submit" disabled={!coffees.length}>
+            Confirm Purchase
+          </SubmitButton>
         </SelectedCoffeesSection>
       </aside>
     </FormContainer>

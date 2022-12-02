@@ -142,4 +142,9 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme['yellow-dark']};
   }
+
+  &:disabled {
+    background-color: ${(props) => props.theme['yellow-light']};
+    cursor: not-allowed;
+  }
 `;
