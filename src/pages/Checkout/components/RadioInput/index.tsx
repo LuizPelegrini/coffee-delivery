@@ -1,3 +1,5 @@
+import { forwardRef, InputHTMLAttributes } from 'react';
+
 import { Bank, CreditCard, Money } from 'phosphor-react';
 
 import { Input, Label } from './styles';
@@ -8,21 +10,25 @@ const ICONS_MAPPER = {
   cash: <Money size={22} />,
 } as const;
 
-interface RadioInputProps {
+interface RadioInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   icon: keyof typeof ICONS_MAPPER;
-  label: string;
-  groupName: string;
+  text: string;
 }
 
-export function RadioInput({ id, icon, label, groupName }: RadioInputProps) {
+function RadioInput(
+  { id, icon, text, ...inputProps }: RadioInputProps,
+  ref: any,
+) {
   return (
     <>
-      <Input type="radio" name={groupName} id={id} />
+      <Input id={id} type="radio" {...inputProps} ref={ref} />
       <Label htmlFor={id}>
         {ICONS_MAPPER[icon]}
-        <span>{label}</span>
+        <span>{text}</span>
       </Label>
     </>
   );
 }
+
+export default forwardRef(RadioInput);

@@ -1,9 +1,11 @@
+import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+
 import { CheckoutItem } from './components/CheckoutItem';
 import { OrderSummary } from './components/OrderSummary';
 import { CheckoutHeader } from './components/CheckoutHeader';
 
-import { RadioInput } from './components/RadioInput';
-import React, { useContext } from 'react';
+import RadioInput from './components/RadioInput';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 
 import {
@@ -22,10 +24,15 @@ import {
 } from './styles';
 
 export function Checkout() {
+  const { register, handleSubmit } = useForm();
   const { coffees } = useContext(ShoppingCartContext);
 
+  function checkoutPurchase(data: any) {
+    console.log(data);
+  }
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleSubmit(checkoutPurchase)}>
       <div>
         <h1>Complete your order</h1>
         <AddressSection>
@@ -37,12 +44,36 @@ export function Checkout() {
           />
 
           <AddressInputGroup>
-            <ZipCodeInput type="text" placeholder="Zip Code" />
-            <StreetNameInput type="text" placeholder="Address" />
-            <ResidencyNumberInput type="text" placeholder="Number" />
-            <ComplementInput type="text" placeholder="Complement" />
-            <CityInput type="text" placeholder="City" />
-            <StateInput type="text" placeholder="State" />
+            <ZipCodeInput
+              type="text"
+              placeholder="Zip Code"
+              {...register('zip-code', { required: true })}
+            />
+            <StreetNameInput
+              type="text"
+              placeholder="Address"
+              {...register('address-street', { required: true })}
+            />
+            <ResidencyNumberInput
+              type="text"
+              placeholder="Number"
+              {...register('address-number', { required: true })}
+            />
+            <ComplementInput
+              type="text"
+              placeholder="Complement"
+              {...register('address-complement')}
+            />
+            <CityInput
+              type="text"
+              placeholder="City"
+              {...register('address-city', { required: true })}
+            />
+            <StateInput
+              type="text"
+              placeholder="State"
+              {...register('address-state', { required: true })}
+            />
           </AddressInputGroup>
         </AddressSection>
 
@@ -58,21 +89,24 @@ export function Checkout() {
           <div>
             <RadioInput
               id="payment_credit"
-              groupName="payment"
-              label="Credit Card"
+              text="Credit Card"
               icon="credit-card"
+              value="credit"
+              {...register('payment', { required: true })}
             />
             <RadioInput
               id="payment_debit"
-              groupName="payment"
-              label="Debit Card"
+              text="Debit Card"
               icon="debit-card"
+              value="debit"
+              {...register('payment')}
             />
             <RadioInput
               id="payment_cash"
-              groupName="payment"
-              label="Cash"
+              text="Cash"
               icon="cash"
+              value="cash"
+              {...register('payment')}
             />
           </div>
         </PaymentSection>
