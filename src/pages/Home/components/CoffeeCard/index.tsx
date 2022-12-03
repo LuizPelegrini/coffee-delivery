@@ -18,7 +18,7 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ coffee, quantity = 1 }: CoffeeCardProps) {
-  const { addCoffee } = useContext(ShoppingCartContext);
+  const { upsertCoffee } = useContext(ShoppingCartContext);
 
   const { name, description, features, image, priceInCents } = coffee;
 
@@ -29,7 +29,7 @@ export function CoffeeCard({ coffee, quantity = 1 }: CoffeeCardProps) {
     ) as HTMLInputElement;
 
     const quantity = parseInt(element.value);
-    addCoffee(coffee, quantity);
+    upsertCoffee(coffee, quantity);
   }
 
   return (

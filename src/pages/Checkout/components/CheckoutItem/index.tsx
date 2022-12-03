@@ -14,10 +14,10 @@ interface CheckoutItemProps {
 }
 
 export function CheckoutItem({ coffee, quantity }: CheckoutItemProps) {
-  const { removeCoffee, editQuantity } = useContext(ShoppingCartContext);
+  const { removeCoffee, upsertCoffee } = useContext(ShoppingCartContext);
 
   function handleChange(quantity: number) {
-    editQuantity(coffee.id, quantity);
+    upsertCoffee(coffee, quantity);
   }
 
   function handleRemove() {
