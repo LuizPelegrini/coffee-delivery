@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import * as zod from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CheckoutItem } from './components/CheckoutItem';
 import { OrderSummary } from './components/OrderSummary';
@@ -23,11 +25,37 @@ import {
   SubmitButton,
 } from './styles';
 
+// eslint-disable-next-line no-unused-vars
+enum PaymentOptions {
+  // eslint-disable-next-line no-unused-vars
+  debit = 'debit',
+  // eslint-disable-next-line no-unused-vars
+  credit = 'credit',
+  // eslint-disable-next-line no-unused-vars
+  cash = 'cash',
+}
+
+const checkoutPurchaseFormSchema = zod.object({
+  'zip-code': zod.string({
+    required_error: 'Please provide your address Zip Code',
+  }),
+  'address-street': zod.string(),
+  'address-number': zod.string(),
+  'address-complement': zod.string().optional(),
+  'address-city': zod.string(),
+  'address-state': zod.string(),
+  payment: zod.nativeEnum(PaymentOptions),
+});
+
+type CheckoutPurchaseFormData = zod.infer<typeof checkoutPurchaseFormSchema>;
+
 export function Checkout() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<CheckoutPurchaseFormData>({
+    resolver: zodResolver(checkoutPurchaseFormSchema),
+  });
   const { coffees } = useContext(ShoppingCartContext);
 
-  function checkoutPurchase(data: any) {
+  function checkoutPurchase(data: CheckoutPurchaseFormData) {
     console.log(data);
   }
 
