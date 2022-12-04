@@ -16,11 +16,15 @@ export enum PaymentMethod {
   CASH = 'cash',
 }
 
+interface Purchase {
+  id: string;
+  address: Address;
+  paymentMethod: PaymentMethod;
+}
+
 interface CheckoutContextType {
-  address: Address | null;
-  paymentMethod: PaymentMethod | null;
-  changeAddress: (address: Address) => void;
-  changePaymentMethod: (payment: PaymentMethod) => void;
+  purchases: Purchase[];
+  createPurchase: (address: Address, payment: PaymentMethod) => string;
 }
 
 export const CheckoutContext = createContext({} as CheckoutContextType);
@@ -30,26 +34,26 @@ interface CheckoutProviderProps {
 }
 
 export function CheckoutProvider({ children }: CheckoutProviderProps) {
-  const [address, setAddress] = useState<Address | null>(null);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | null>(
-    null,
-  );
+  const [purchases, setPurchases] = useState<Purchase[]>([]);
 
-  function changeAddress(address: Address) {
-    setAddress(address);
-  }
+  function createPurchase(address: Address, payment: PaymentMethod) {
+    const id = String(Date.now());
+    const newPurchase: Purchase = {
+      id,
+      address,
+      paymentMethod: payment,
+    };
 
-  function changePaymentMethod(payment: PaymentMethod) {
-    setPaymentMethod(payment);
+    setPurchases((state) => [...state, newPurchase]);
+
+    return id;
   }
 
   return (
     <CheckoutContext.Provider
       value={{
-        address,
-        paymentMethod,
-        changeAddress,
-        changePaymentMethod,
+        purchases,
+        createPurchase,
       }}
     >
       {children}

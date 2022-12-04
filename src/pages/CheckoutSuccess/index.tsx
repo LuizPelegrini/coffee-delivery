@@ -1,16 +1,29 @@
+import { useContext, useMemo } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Container, Header, DeliveryInfo, Image } from './styles';
 
 import deliveryImage from '../../assets/delivery-illustration.svg';
-import { useContext } from 'react';
 import { CheckoutContext } from '../../contexts/CheckoutContext';
 import { mapPaymentMethodToName } from '../../utils';
 
 export function CheckoutSuccess() {
-  const { address, paymentMethod } = useContext(CheckoutContext);
+  const { purchases } = useContext(CheckoutContext);
+  const query = useQuery();
 
-  const paymentMethodName = paymentMethod
-    ? mapPaymentMethodToName(paymentMethod)
-    : null;
+  // only displays the confirmation page if id is provided...
+  const id = query.get('id');
+  if (!id) {
+    return <Navigate to="/" />;
+  }
+
+  // ...and purchase is found
+  const purchase = purchases.find((purchase) => purchase.id === id);
+  if (!purchase) {
+    return <Navigate to="/" />;
+  }
+
+  const { address, paymentMethod } = purchase;
+  const paymentMethodName = mapPaymentMethodToName(paymentMethod);
 
   return (
     <Container>
@@ -62,4 +75,9 @@ export function CheckoutSuccess() {
       </main>
     </Container>
   );
+}
+
+function useQuery() {
+  const { search } = useLocation();
+  return useMemo(() => new URLSearchParams(search), [search]);
 }

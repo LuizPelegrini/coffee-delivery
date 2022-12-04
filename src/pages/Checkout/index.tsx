@@ -46,26 +46,30 @@ export function Checkout() {
     resolver: zodResolver(checkoutPurchaseFormSchema),
   });
   const { coffees, removeAll } = useContext(ShoppingCartContext);
-  const { changeAddress, changePaymentMethod } = useContext(CheckoutContext);
+  const { createPurchase } = useContext(CheckoutContext);
 
   const navigate = useNavigate();
 
   function checkoutPurchase(data: CheckoutPurchaseFormData) {
-    // save checkout address so it can be used in the success page
-    changeAddress({
-      streetName: data['address-street'],
-      number: data['address-number'],
-      city: data['address-city'],
-      state: data['address-state'],
-    });
-
-    changePaymentMethod(data.payment);
+    // save purchase
+    const id = createPurchase(
+      {
+        streetName: data['address-street'],
+        number: data['address-number'],
+        city: data['address-city'],
+        state: data['address-state'],
+      },
+      data.payment,
+    );
 
     // remove all items from shopping cart
     removeAll();
 
     // redirect to success page
-    navigate('/checkout/success');
+    navigate({
+      pathname: '/checkout/success',
+      search: `?id=${id}`,
+    });
   }
 
   return (
