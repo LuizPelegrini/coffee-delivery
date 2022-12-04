@@ -124,21 +124,21 @@ export function Checkout() {
               id="payment_credit"
               text="Credit Card"
               icon="credit-card"
-              value="credit"
+              value={PaymentMethod.CREDIT}
               {...register('payment', { required: true })}
             />
             <RadioInput
               id="payment_debit"
               text="Debit Card"
               icon="debit-card"
-              value="debit"
+              value={PaymentMethod.DEBIT}
               {...register('payment')}
             />
             <RadioInput
               id="payment_cash"
               text="Cash"
               icon="cash"
-              value="cash"
+              value={PaymentMethod.CASH}
               {...register('payment')}
             />
           </div>

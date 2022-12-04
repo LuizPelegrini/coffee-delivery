@@ -9,11 +9,11 @@ interface Address {
 
 export enum PaymentMethod {
   // eslint-disable-next-line no-unused-vars
-  DEBIT = 'Debit Card',
+  DEBIT = 'debit',
   // eslint-disable-next-line no-unused-vars
-  CREDIT = 'Credit Card',
+  CREDIT = 'credit',
   // eslint-disable-next-line no-unused-vars
-  CASH = 'Cash',
+  CASH = 'cash',
 }
 
 interface CheckoutContextType {
