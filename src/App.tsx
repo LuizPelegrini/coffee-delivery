@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 
 import { Router } from './components/Router';
+import { CheckoutProvider } from './contexts/CheckoutContext';
 import { ShoppingCartProvider } from './contexts/ShoppingCartContext';
 
 import { GlobalStyle } from './styles/global';
@@ -10,7 +11,9 @@ export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <ShoppingCartProvider>
-        <Router />
+        <CheckoutProvider>
+          <Router />
+        </CheckoutProvider>
       </ShoppingCartProvider>
 
       <GlobalStyle />

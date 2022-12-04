@@ -24,16 +24,8 @@ import {
   AddressInputGroup,
   SubmitButton,
 } from './styles';
-
-// eslint-disable-next-line no-unused-vars
-enum PaymentOptions {
-  // eslint-disable-next-line no-unused-vars
-  debit = 'debit',
-  // eslint-disable-next-line no-unused-vars
-  credit = 'credit',
-  // eslint-disable-next-line no-unused-vars
-  cash = 'cash',
-}
+import { CheckoutContext, PaymentMethod } from '../../contexts/CheckoutContext';
+import { useNavigate } from 'react-router-dom';
 
 const checkoutPurchaseFormSchema = zod.object({
   'zip-code': zod.string({
@@ -44,7 +36,7 @@ const checkoutPurchaseFormSchema = zod.object({
   'address-complement': zod.string().optional(),
   'address-city': zod.string(),
   'address-state': zod.string(),
-  payment: zod.nativeEnum(PaymentOptions),
+  payment: zod.nativeEnum(PaymentMethod),
 });
 
 type CheckoutPurchaseFormData = zod.infer<typeof checkoutPurchaseFormSchema>;
@@ -54,9 +46,22 @@ export function Checkout() {
     resolver: zodResolver(checkoutPurchaseFormSchema),
   });
   const { coffees } = useContext(ShoppingCartContext);
+  const { changeAddress, changePaymentMethod } = useContext(CheckoutContext);
+
+  const navigate = useNavigate();
 
   function checkoutPurchase(data: CheckoutPurchaseFormData) {
     console.log(data);
+    changeAddress({
+      streetName: data['address-street'],
+      number: data['address-number'],
+      city: data['address-city'],
+      state: data['address-state'],
+    });
+
+    changePaymentMethod(data.payment);
+
+    navigate('/checkout/success');
   }
 
   return (
