@@ -45,13 +45,13 @@ export function Checkout() {
   const { register, handleSubmit } = useForm<CheckoutPurchaseFormData>({
     resolver: zodResolver(checkoutPurchaseFormSchema),
   });
-  const { coffees } = useContext(ShoppingCartContext);
+  const { coffees, removeAll } = useContext(ShoppingCartContext);
   const { changeAddress, changePaymentMethod } = useContext(CheckoutContext);
 
   const navigate = useNavigate();
 
   function checkoutPurchase(data: CheckoutPurchaseFormData) {
-    console.log(data);
+    // save checkout address so it can be used in the success page
     changeAddress({
       streetName: data['address-street'],
       number: data['address-number'],
@@ -61,6 +61,10 @@ export function Checkout() {
 
     changePaymentMethod(data.payment);
 
+    // remove all items from shopping cart
+    removeAll();
+
+    // redirect to success page
     navigate('/checkout/success');
   }
 

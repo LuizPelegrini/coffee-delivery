@@ -16,7 +16,14 @@ interface IRemoveCoffeeActionProps {
   };
 }
 
-export type ActionProps = IUpsertCoffeeActionProps | IRemoveCoffeeActionProps;
+interface IRemoveAllActionProps {
+  type: ActionTypes.REMOVE_ALL;
+}
+
+export type ActionProps =
+  | IUpsertCoffeeActionProps
+  | IRemoveCoffeeActionProps
+  | IRemoveAllActionProps;
 
 export const upsertCoffeeAction = (
   coffee: Coffee,
@@ -37,5 +44,11 @@ export const removeCoffeeAction = (id: string): IRemoveCoffeeActionProps => {
     payload: {
       id,
     },
+  };
+};
+
+export const removeAllAction = (): IRemoveAllActionProps => {
+  return {
+    type: ActionTypes.REMOVE_ALL,
   };
 };

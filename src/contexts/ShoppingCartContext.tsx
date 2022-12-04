@@ -9,12 +9,14 @@ import {
 import {
   upsertCoffeeAction,
   removeCoffeeAction,
+  removeAllAction,
 } from '../reducers/shoppingCart/action';
 
 interface ShoppingCartContextType {
   coffees: ShoppingCartCoffee[];
   upsertCoffee: (coffee: Coffee, quantity: number) => void;
   removeCoffee: (id: string) => void;
+  removeAll: () => void;
 }
 
 export const ShoppingCartContext = createContext({} as ShoppingCartContextType);
@@ -36,12 +38,17 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     dispatch(removeCoffeeAction(id));
   }
 
+  function removeAll() {
+    dispatch(removeAllAction());
+  }
+
   return (
     <ShoppingCartContext.Provider
       value={{
         coffees: shoppinCartState.coffees,
         upsertCoffee,
         removeCoffee,
+        removeAll,
       }}
     >
       {children}

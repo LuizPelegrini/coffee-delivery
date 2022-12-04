@@ -15,6 +15,8 @@ export enum ActionTypes {
   UPSERT_COFFEE = 'UPSERT_COFFEE',
   // eslint-disable-next-line no-unused-vars
   REMOVE_COFFEE = 'REMOVE_COFFEE',
+  // eslint-disable-next-line no-unused-vars
+  REMOVE_ALL = 'REMOVE_ALL',
 }
 
 export function shoppingCartReducer(
@@ -65,6 +67,13 @@ export function shoppingCartReducer(
     return {
       ...state,
       coffees,
+    };
+  }
+
+  if (action.type === ActionTypes.REMOVE_ALL) {
+    return {
+      ...state,
+      coffees: [],
     };
   }
 
