@@ -7,19 +7,19 @@ import { Home } from '../pages/Home';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: 'coffee-delivery',
     element: <DefaultLayout />,
     children: [
       {
-        path: '/',
+        path: '/coffee-delivery/',
         element: <Home />,
       },
       {
-        path: '/checkout',
+        path: '/coffee-delivery/checkout',
         element: <Checkout />,
       },
       {
-        path: '/checkout/success',
+        path: '/coffee-delivery/checkout/success',
         element: <CheckoutSuccess />,
       },
     ],
