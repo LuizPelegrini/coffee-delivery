@@ -1,30 +1,38 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouteObject,
+  RouterProvider,
+} from 'react-router-dom';
 
 import { DefaultLayout } from '../layouts/DefaultLayout';
 import { Checkout } from '../pages/Checkout';
 import { CheckoutSuccess } from '../pages/CheckoutSuccess';
 import { Home } from '../pages/Home';
 
-const router = createBrowserRouter([
+const routes: RouteObject[] = [
   {
-    path: 'coffee-delivery',
+    path: '/',
     element: <DefaultLayout />,
     children: [
       {
-        path: '/coffee-delivery/',
+        path: '/',
         element: <Home />,
       },
       {
-        path: '/coffee-delivery/checkout',
+        path: '/checkout',
         element: <Checkout />,
       },
       {
-        path: '/coffee-delivery/checkout/success',
+        path: '/checkout/success',
         element: <CheckoutSuccess />,
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes, {
+  basename: '/coffee-delivery',
+});
 
 export function Router() {
   return <RouterProvider router={router} />;
