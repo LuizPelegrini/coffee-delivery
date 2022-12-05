@@ -5,11 +5,4 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/coffee-delivery/',
-  experimental: {
-    renderBuiltUrl(filename, details) {
-      if (details.type === 'public') {
-        return `https://luizpelegrini.github.io/coffee-delivery/${filename}`;
-      }
-    },
-  },
 });

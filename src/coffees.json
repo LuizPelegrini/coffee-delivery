@@ -1,18 +1,66 @@
 [
   {
-    "id": "abc",
+    "id": "traditional-expresso",
     "name": "Traditional Expresso",
-    "description": "Here is the description",
+    "description": "Here is the expresso coffee description",
     "features": ["Traditional"],
-    "image": "/images/coffees/americano.png",
-    "priceInCents": 410
+    "image": "/coffee-delivery/images/coffees/americano.png",
+    "priceInCents": 450
   },
   {
-    "id": "abcd",
-    "name": "Traditional Arabic",
-    "description": "Here is the description",
-    "features": ["Traditional", "Cold"],
-    "image": "/images/coffees/arabic.png",
-    "priceInCents": 410
+    "id": "arabic",
+    "name": "Arabic",
+    "description": "Here is the arabic coffee description",
+    "features": ["Special"],
+    "image": "/coffee-delivery/images/coffees/arabic.png",
+    "priceInCents": 400
+  },
+  {
+    "id": "coffee-with-milk",
+    "name": "Coffee with Milk",
+    "description": "Here is the coffee with milk description",
+    "features": ["Traditional", "Milk"],
+    "image": "/coffee-delivery/images/coffees/milk-coffee.png",
+    "priceInCents": 520
+  },
+  {
+    "id": "cappuccino",
+    "name": "Coffee with Milk",
+    "description": "Description of cappuccino",
+    "features": ["Traditional", "Milk"],
+    "image": "/coffee-delivery/images/coffees/capuccino.png",
+    "priceInCents": 600
+  },
+  {
+    "id": "cuban",
+    "name": "Cuban",
+    "description": "Description of cuban coffee",
+    "features": ["Special", "Alcohol", "Cold"],
+    "image": "/coffee-delivery/images/coffees/cuban.png",
+    "priceInCents": 600
+  },
+  {
+    "id": "mochaccino",
+    "name": "Mochaccino",
+    "description": "Description of mochaccino",
+    "features": ["Special", "Traditional", "Milk"],
+    "image": "/coffee-delivery/images/coffees/mochaccino.png",
+    "priceInCents": 720
+  },
+  {
+    "id": "irish",
+    "name": "Irish",
+    "description": "Description of irish coffee",
+    "features": ["Special", "Alcohol"],
+    "image": "/coffee-delivery/images/coffees/irish.png",
+    "priceInCents": 800
+  },
+  {
+    "id": "macchiato",
+    "name": "Macchiato",
+    "description": "Description of macchiato",
+    "features": ["Traditional", "Milk"],
+    "image": "/coffee-delivery/images/coffees/macchiato.png",
+    "priceInCents": 690
   }
 ]
